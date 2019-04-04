@@ -12,4 +12,8 @@ server.get('/', (req, res) => {
   res.send('working');
 });
 
+// OPEN routes
+
+// RESTRICTED routes
+
 module.exports = server;
