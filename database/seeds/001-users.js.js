@@ -9,7 +9,8 @@ function fakeCredentials(amount) {
       name: faker.name.findName(),
       email: faker.internet.email(),
       username: faker.internet.userName(),
-      password: bcrypt.hashSync(faker.internet.password(), 8)
+      password: bcrypt.hashSync(faker.internet.password(), 8),
+      team: 'mars-1'
     });
   }
   return credsArray;
