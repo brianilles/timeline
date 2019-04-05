@@ -7,12 +7,7 @@ exports.up = function(knex) {
       .string('email', 128)
       .notNullable()
       .unique();
-    users
-      .string('username', 128)
-      .notNullable()
-      .unique();
     users.string('password', 128).notNullable();
-    users.string('team', 128).notNullable();
   });
 };
 

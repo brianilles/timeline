@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const registerRouter = require('../auth/register/register-router.js');
+const registerRouter = require('../auth/register-router.js');
 
 const server = express();
 
@@ -16,6 +16,7 @@ server.get('/', (req, res) => {
 
 // OPEN routes
 server.use('/api/register', registerRouter);
+
 // RESTRICTED routes
 
 module.exports = server;

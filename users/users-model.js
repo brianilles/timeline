@@ -1,11 +1,17 @@
 const db = require('../database/dbConfig.js');
 
 module.exports = {
-  add
+  add,
+  getUserById
 };
 
-function add(user) {
+function getUserById(id) {
   return db('users')
-    .insert(user)
-    .then(user);
+    .where({ id })
+    .first();
+}
+
+async function add(user) {
+  const [id] = await db('users').insert(user);
+  return getUserById(id);
 }
