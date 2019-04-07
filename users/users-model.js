@@ -4,7 +4,8 @@ module.exports = {
   add,
   getUserById,
   findByUsername,
-  getAllUsers
+  getUserProjects,
+  addProject
 };
 
 function getUserById(id) {
@@ -24,6 +25,20 @@ function findByUsername(username) {
     .first();
 }
 
-function getAllUsers() {
-  return db('users').select('username');
+// PROJECTS
+function getUserProjects(user_id) {
+  return db('projects')
+    .select('name')
+    .where({ user_id });
+}
+
+function getProjectById(id) {
+  return db('projects')
+    .where({ id })
+    .first();
+}
+
+async function addProject(project) {
+  const [projectId] = await db('projects').insert(project);
+  return getProjectById(projectId);
 }
