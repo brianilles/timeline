@@ -1,9 +1,8 @@
 const router = require('express').Router();
 
 const Users = require('./users-model.js');
-const { authenticate } = require('../auth/authenticate.js');
 
-router.get('/:id', authenticate, async (req, res) => {
+router.get('/:id', async (req, res) => {
   const userId = req.params.id;
   try {
     const projects = await Users.getUserProjects(userId);
@@ -14,7 +13,7 @@ router.get('/:id', authenticate, async (req, res) => {
   }
 });
 
-router.post('/:id', authenticate, async (req, res) => {
+router.post('/:id', async (req, res) => {
   const project = req.body;
   project.user_id = req.params.id;
   try {
@@ -23,6 +22,17 @@ router.post('/:id', authenticate, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error adding project.' });
+  }
+});
+
+router.post('/:id/stories', async (req, res) => {
+  const story = req.body;
+  story.project_id = req.params.id;
+  try {
+    const addedStory = await Users.addProjectStory(story);
+    res.status(201).json(addedStory);
+  } catch (error) {
+    console.error(error);
   }
 });
 

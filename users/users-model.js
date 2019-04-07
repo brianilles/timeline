@@ -5,7 +5,9 @@ module.exports = {
   getUserById,
   findByUsername,
   getUserProjects,
-  addProject
+  addProject,
+  addProjectStory,
+  getStoryById
 };
 
 function getUserById(id) {
@@ -41,4 +43,16 @@ function getProjectById(id) {
 async function addProject(project) {
   const [projectId] = await db('projects').insert(project);
   return getProjectById(projectId);
+}
+
+// STORIES
+function getStoryById(id) {
+  return db('stories')
+    .where({ id })
+    .first();
+}
+
+async function addProjectStory(story) {
+  const [storyId] = await db('stories').insert(story);
+  return getStoryById(storyId);
 }

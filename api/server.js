@@ -5,6 +5,7 @@ const cors = require('cors');
 const registerRouter = require('../auth/register-router.js');
 const loginRouter = require('../auth/login-router.js');
 const homeRouter = require('../users/users-router.js');
+const { authenticate } = require('../auth/authenticate.js');
 
 const server = express();
 
@@ -21,6 +22,6 @@ server.use('/api/register', registerRouter);
 server.use('/api/login', loginRouter);
 
 // RESTRICTED route
-server.use('/api/projects', homeRouter);
+server.use('/api/projects', authenticate, homeRouter);
 
 module.exports = server;
