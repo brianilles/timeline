@@ -6,13 +6,13 @@ const secret = require('../api/secret.js').jwtSecret;
 const Users = require('../users/users-model.js');
 
 router.post('/', async (req, res) => {
-  const { name, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const user = await Users.findByUsername(name);
+    const user = await Users.findByUsername(username);
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user);
       res.status(200).json({
-        message: `Successful login ${user.name}`,
+        message: `Successful login ${user.username}`,
         token
       });
     } else {
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 function generateToken(user) {
   const payload = {
     subject: user.id,
-    user: user.name
+    user: user.username
   };
   const options = {
     expiresIn: '1d'
