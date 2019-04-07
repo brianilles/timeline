@@ -21,6 +21,6 @@ server.use('/api/register', registerRouter);
 server.use('/api/login', loginRouter);
 
 // RESTRICTED route
-server.use('/api/home', homeRouter);
+server.use('/api/projects', homeRouter);
 
 module.exports = server;

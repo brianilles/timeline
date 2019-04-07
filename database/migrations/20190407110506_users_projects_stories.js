@@ -22,7 +22,10 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
 
-      projects.string('name', 128).notNullable();
+      projects
+        .string('name', 128)
+        .notNullable()
+        .unique();
       projects.string('description', 255).notNullable();
       projects.boolean('completed').defaultTo(false);
       projects.timestamp('created_at').defaultTo(knex.fn.now());
