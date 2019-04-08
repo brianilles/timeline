@@ -41,7 +41,7 @@ export default class Login extends Component {
     axios
       .post(endpoint, this.state)
       .then(res => {
-        console.log('LOGIN RES:', res);
+        localStorage.setItem('token', res.data.token);
       })
       .catch(error => {
         console.error('LOGIN ERROR:', error);
@@ -50,6 +50,7 @@ export default class Login extends Component {
       username: '',
       password: ''
     });
+    this.props.history.push('/home');
   };
 
   handleInputChange = event => {

@@ -58,10 +58,10 @@ export default class Signup extends Component {
     axios
       .post(endpoint, this.state)
       .then(res => {
-        console.log('REGISTER RES:', res);
+        console.log(res);
       })
       .catch(error => {
-        console.error('REGISTER ERROR', error);
+        console.error('LOGIN ERROR:', error);
       });
     this.setState({
       email: '',
