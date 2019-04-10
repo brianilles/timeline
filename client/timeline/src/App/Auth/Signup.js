@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Login from './Login';
+import { Link } from 'react-router-dom';
 
 export default class Signup extends Component {
   state = {
@@ -48,6 +48,7 @@ export default class Signup extends Component {
             required
           />
           <button type="submit">Sign Up</button>
+          <Link to="/login">Login</Link>
         </form>
       </>
     );
@@ -67,7 +68,7 @@ export default class Signup extends Component {
       });
   };
 
-  login = event => {
+  login = () => {
     const endpoint = 'http://localhost:5000/api/login';
     axios
       .post(endpoint, this.state)

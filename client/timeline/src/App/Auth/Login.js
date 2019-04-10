@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
   state = {
@@ -30,6 +31,7 @@ export default class Login extends Component {
             required
           />
           <button type="submit">Log In</button>
+          <Link to="/signup">Signup</Link>
         </form>
       </>
     );
