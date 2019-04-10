@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './signup-login.scss';
 
 export default class Signup extends Component {
   state = {
@@ -13,44 +14,48 @@ export default class Signup extends Component {
   render() {
     const { name, username, email, password } = this.state;
     return (
-      <>
+      <div className="signup-login signup">
         <form onSubmit={this.handleSubmit}>
+          <label>Email</label>
           <input
             type="email"
             name="email"
             value={email}
             onChange={this.handleInputChange}
-            placeholder="Email"
             required
           />
+          <label>Full Name</label>
           <input
             type="text"
             name="name"
             value={name}
             onChange={this.handleInputChange}
-            placeholder="Full Name"
             required
           />
+          <label>Username</label>
           <input
             type="text"
             name="username"
             value={username}
             onChange={this.handleInputChange}
-            placeholder="Username"
             required
           />
+          <label>Password</label>
           <input
             type="password"
             name="password"
             value={password}
             onChange={this.handleInputChange}
-            placeholder="Password"
             required
           />
           <button type="submit">Sign Up</button>
-          <Link to="/login">Login</Link>
+          <span>
+            {' '}
+            Already have an account?
+            <Link to="/login">Login</Link>
+          </span>
         </form>
-      </>
+      </div>
     );
   }
 
