@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Login from './Login';
 
 export default class Signup extends Component {
   state = {
@@ -59,6 +60,20 @@ export default class Signup extends Component {
       .post(endpoint, this.state)
       .then(res => {
         console.log(res);
+        this.login();
+      })
+      .catch(error => {
+        console.error('LOGIN ERROR:', error);
+      });
+  };
+
+  login = event => {
+    const endpoint = 'http://localhost:5000/api/login';
+    axios
+      .post(endpoint, this.state)
+      .then(res => {
+        localStorage.setItem('token', res.data.token);
+        this.props.history.push('/home');
       })
       .catch(error => {
         console.error('LOGIN ERROR:', error);

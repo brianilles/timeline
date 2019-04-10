@@ -42,6 +42,7 @@ export default class Login extends Component {
       .post(endpoint, this.state)
       .then(res => {
         localStorage.setItem('token', res.data.token);
+        this.props.history.push('/home');
       })
       .catch(error => {
         console.error('LOGIN ERROR:', error);
@@ -50,7 +51,6 @@ export default class Login extends Component {
       username: '',
       password: ''
     });
-    this.props.history.push('/home');
   };
 
   handleInputChange = event => {
